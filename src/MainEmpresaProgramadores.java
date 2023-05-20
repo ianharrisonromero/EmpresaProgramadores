@@ -9,8 +9,7 @@ public class MainEmpresaProgramadores {
 
     Empresa empresa = new Empresa("Empresa del Juan de la Cierva");
     int opcion = 0;
-    // TODO: declara la referencia con el tipo apropiado:
-    // TipoReferencia referencia;
+    // PruebaPrimerosCambiosBranchEloy;
 
     Scanner scanner = new Scanner(System.in);
 
