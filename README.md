@@ -2,9 +2,14 @@
 
 En este ejercicio, se te proporciona un programa principal llamado `MainEmpresa` que interactúa con una clase llamada `Empresa`. Tu tarea es crear e implementar las siguientes clases: `Empleado` (abstracta), `Gerente`, `Programador`, `ParametroInvalidoException` y `TipoEmpleado` (enum). A continuación, se detalla cada una de las clases:
 
+## Empresa (viene medio hecha para que os hagáis a la idea):
+
+- La cosa sería implementar un Map, ya sea un HashMap para buscar rápido, o un TreeMap para tenerlos más ordenados.
+
 ## Empleado (abstracta):
 
 - Atributos:
+  - `idEmpleado` (Integer): el id del empleado.
   - `nombre` (String): el nombre del empleado.
   - `sueldo` (double): el sueldo del empleado.
 
@@ -27,13 +32,12 @@ En este ejercicio, se te proporciona un programa principal llamado `MainEmpresa`
 ## Programador (subclase de Empleado):
 
 - Atributos:
-  - `lenguaje` (String): el lenguaje de programación del programador.
-  - `plusIdioma` (boolean): indica si el programador recibe un plus de idioma o no.
+  - `esJunior` (boolean): indica si el programador es junior(true) o senior(false).
 
 - Métodos:
   - `Constructor`: recibe el nombre, el sueldo, el lenguaje de programación y el estado del plus de idioma del programador.
   - `getLenguaje()`: devuelve el lenguaje de programación del programador.
-  - `recibePlusIdioma()`: devuelve true si el programador recibe un plus de idioma, false en caso contrario.
+  - `esJunior()`: devuelve true si el programador recibe un plus de idioma, false en caso contrario(no sé si es necesario).
   - `toString()`: devuelve una representación en cadena de caracteres del programador.
 
 ## ParametroInvalidoException (clase de excepción):
@@ -49,7 +53,7 @@ En este ejercicio, se te proporciona un programa principal llamado `MainEmpresa`
 
 Implementa las clases mencionadas anteriormente con sus respectivos atributos y métodos según las especificaciones proporcionadas.
 
-Una vez implementadas las clases, intégralas en el programa `MainEmpresa` proporcionado. Asegúrate de completar las partes indicadas con `// TODO` en el código.
+Una vez implementadas las clases, intégralas en el programa `MainEmpresaProgramadores` proporcionado. Asegúrate de completar las partes indicadas con `// TODO` en el código.
 
 El programa debe realizar las siguientes acciones:
 

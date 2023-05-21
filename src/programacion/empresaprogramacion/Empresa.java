@@ -1,19 +1,19 @@
 package programacion.empresaprogramacion;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class Empresa {
-    private String nombre;
-    private List<Empleado> empleados;
+    
+    public String nombre;
+    public Map<Integer, Empleado> mapaEmpleados;
 
     public Empresa(String nombre) {
         this.nombre = nombre;
-        this.empleados = new ArrayList<>();
+        //TODO this.empleados = new ?<>();
     }
 
     public void addEmpleado(Empleado empleado) {
-        empleados.add(empleado);
+        // TODO  (no permitir meter 2 empleados con el mismo "idEmpleado" y dado el caso lanzar 
+        //exception)
     }
 
     public void guardarEnCSV(String archivoGuardar) {
@@ -22,9 +22,15 @@ public class Empresa {
 
     public void cargarDesdeCSV(String archivoCargar) {
         //TODO
+
+    }
+    @Override
+    public String toString() {
+        //TODO dejar el toString bonito
+        return "Empresa [nombre=" + nombre + ", mapaEmpleados=" + mapaEmpleados + "]";
     }
 
-    @Override
+
     public String toStringEmpleados() {
         // TODO Mostrar todos los datos de la empresa (nombre y empleados)
 

@@ -9,7 +9,6 @@ public class MainEmpresaProgramadores {
 
     Empresa empresa = new Empresa("Empresa del Juan de la Cierva");
     int opcion = 0;
-    // PruebaPrimerosCambiosBranchEloy;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -45,22 +44,22 @@ public class MainEmpresaProgramadores {
       switch (opcion) {
 
         case 1:
-          // Imprimir todos los empleados
-          empresa.toStringEmpleados();
+          // Imprimir los datos de la empresa y todos sus empleados
+          empresa.toString();
           break;
 
         case 2:
-          // Imprimir programadores
+          // Imprimir solo programadores
           empresa.toStringProgramadores();
           break;
 
         case 3:
-          // Imprimir empleados por sueldo de MAYOR A MENOR
+          // Imprimir empleados(todos) por sueldo de MAYOR A MENOR
           empresa.toStringOrdenSueldo();
           break;
 
         case 4:
-          // Imprimir empleados por nombre
+          // Imprimir empleados(todos) por nombre
           empresa.toStringOrdenNombre();
           break;
 
