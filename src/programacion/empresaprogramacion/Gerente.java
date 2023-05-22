@@ -8,6 +8,10 @@ public class Gerente extends Empleado{
     this.departamento = departamento;
   }
 
+  public String getDepartamento() {
+    return departamento;
+  }
+
   @Override
   public String toString() {
     return super.toString() + " - "+departamento;
