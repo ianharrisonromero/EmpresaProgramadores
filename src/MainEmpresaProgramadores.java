@@ -33,7 +33,6 @@ public class MainEmpresaProgramadores {
     } catch (ParametroInvalidoException e) {
       System.out.println(e.getMessage());
     }
-    ;
 
     try {
       referencia = new Gerente("02980444R", "Víctor", 1951.42, "Sistemas");
@@ -76,14 +75,12 @@ public class MainEmpresaProgramadores {
       opcion = Integer.parseInt(sc.nextLine());
 
       switch (opcion) {
-        case 1 -> {
+        case 1 ->
           // Imprimir los datos de la empresa
           System.out.println(empresa);
-        }
-        case 2 -> {
+        case 2 ->
           // Imprimir los datos de la empresa y sus empleados
           System.out.println(empresa.toStringEmpresaYEmpleados());
-        }
         case 3 ->
           // Imprimir solo programadores
                 System.out.println(empresa.toStringProgramadores());
