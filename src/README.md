@@ -40,12 +40,12 @@ En este ejercicio, se te proporciona un programa principal llamado `MainEmpresa`
   - `esJunior()`: devuelve true si el programador recibe un plus de idioma, false en caso contrario(no sé si es necesario).
   - `toString()`: devuelve una representación en cadena de caracteres del programador.
 
-## ParametroInvalidoException (clase de excepción):
+## ~~ParametroInvalidoException (clase de excepción):~~
 
 - Hereda de la clase `Exception`.
 - `Constructor`: recibe un mensaje de error como parámetro.
 
-## TipoEmpleado (enum):
+## ~~TipoEmpleado (enum):~~
 
 - Enumerados:
   - `GERENTE`: representa el tipo de empleado gerente.
