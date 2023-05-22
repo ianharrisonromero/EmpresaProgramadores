@@ -1,56 +1,101 @@
 package programacion.empresaprogramacion;
+
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Empresa {
-    
-    public String nombre;
-    public Map<Integer, Empleado> mapaEmpleados;
+  private String nombre;
+  
+  private Map<String, Empleado> mapaEmpleados;
 
-    //AHORA ESTOY EN BRANCH MAIN
+  public Empresa(String nombre) {
+    this.nombre = nombre;
+    this.mapaEmpleados = new TreeMap<>();
+  }
 
-    public Empresa(String nombre) {
-        this.nombre = nombre;
-        //TODO this.empleados = new ?<>();
+  public void addEmpleado(Empleado empleado) throws ParametroInvalidoException {
+    mapaEmpleados.put(empleado.getIdEmpleado(), empleado);
+  }
+
+  public void guardarEnCSV(String archivoGuardar) {
+    // Guarda el archivo CSV
+    try {
+      FileWriter escritor = new FileWriter(archivoGuardar);
+      for (Empleado empleado : mapaEmpleados.values()) {
+        escritor.write(empleado.toString() + "\n");
+      }
+      escritor.close();
+    } catch (IOException e) {
+      System.out.println("Capturada IOException al guardar el archivo.");
+    }
+  }
+
+  public void cargarDesdeCSV(String archivoCargar) {
+    // Carga el archivo CSV
+    try {
+      BufferedReader buffer = new BufferedReader(new FileReader(archivoCargar));
+      String linea = "";
+      while ((linea = buffer.readLine()) != null) {
+        System.out.println(linea);
+      }
+      buffer.close();
+    } catch (Exception e) {
+      System.out.println("Capturada IOException al cargar el archivo.");
     }
 
-    public void addEmpleado(Empleado empleado) {
-        // TODO  (no permitir meter 2 empleados con el mismo "idEmpleado" y dado el caso lanzar 
-        //exception)
+  }
+
+  public String toStringEmpleados() {
+    // Muestra todos los empleados
+    String cadena = "Empleados de la " + nombre + ":\n";
+    for (Empleado empleado : mapaEmpleados.values()) {
+      cadena += empleado.toString() + "\n";
     }
+    return cadena;
+  }
 
-    public void guardarEnCSV(String archivoGuardar) {
-        //TODO 
+  public String toStringProgramadores() {
+    // Muestra todos los programadores
+    String cadena = "Programadores de la " + nombre + ":\n";
+    for (Empleado empleado : mapaEmpleados.values()) {
+      if (empleado.getTipo() == TipoEmpleado.PROGRAMADOR) {
+        cadena += empleado.toString() + "\n";
+      }
     }
+    return cadena;
+  }
 
-    public void cargarDesdeCSV(String archivoCargar) {
-        //TODO
+  public String toStringOrdenSueldo() {
+    // Ordenar todos los empleados por orden de sueldo de MAYOR A MENOR
+    String cadena = "# Listado de empleados ordenados por sueldo: \n";
 
+    ArrayList<Empleado> ordenSueldo = new ArrayList<>(mapaEmpleados.values());
+    Collections.sort(ordenSueldo, Empleado.COMPARATOR_SUELDO.reversed());
+
+    for (Empleado empleado : ordenSueldo) {
+      cadena += empleado.toString() + "\n";
     }
-    @Override
-    public String toString() {
-        //TODO dejar el toString bonito
-        return "Empresa [nombre=" + nombre + ", mapaEmpleados=" + mapaEmpleados + "]";
+    return cadena;
+  }
+
+  public String toStringOrdenNombre() {
+    // Ordenar todos los empleados por orden de nombre alfabético
+    String cadena = "# Listado de empleados ordenados por su nombre: \n";
+
+    ArrayList <Empleado> ordenNombre = new ArrayList<>(mapaEmpleados.values());
+
+    Collections.sort(ordenNombre, Empleado.COMPARATOR_NOMBRE);
+
+    for (Empleado empleado : ordenNombre) {
+      cadena += empleado.toString() + "\n";
     }
-
-
-    public String toStringEmpleados() {
-        // TODO Mostrar todos los datos de la empresa (nombre y empleados)
-
-    }
-
-    public String toStringProgramadores() {
-        // TODO mostrar todos los empleados programadores, y si reciben o no plus de
-        // idioma
-
-    }
-
-    public String toStringOrdenSueldo() {
-        // TODO ordenar todos los empleados por orden de sueldo de MAYOR A MENOR,
-        // mostrándolo
-    }
-
-    public String toStringOrdenNombre() {
-        // TODO ordenar todos los empleados por orden de nombre alfabético, mostrándolo
-    }
-
+    return cadena;
+  }
+  
 }
