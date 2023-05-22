@@ -1,12 +1,16 @@
 package programacion.empresaprogramacion;
 
-public class Programador{
+public class Programador extends Empleado{
 
   boolean esJunior;
 
-  @Override
-  public String toString() {
-    // TODO toString con operador ternario que imprima si es JUNIOR(true) o SENIOR(false)
+  public Programador(String DNI, String nombre, Double sueldo, boolean esJunior) {
+    super(DNI, nombre, sueldo, TipoEmpleado.PROGRAMADOR);
+    this.esJunior = esJunior;
   }
 
+  @Override
+  public String toString() {
+    return super.toString()+" - "+(esJunior?"Junior":"Senior");
+  }
 }
