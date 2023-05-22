@@ -9,7 +9,7 @@ En este ejercicio, se te proporciona un programa principal llamado `MainEmpresa`
 ## Empleado (abstracta):
 
 - Atributos:
-  - `idEmpleado` (Integer): el id del empleado.
+  - `dniEmpleado` (String): el dni del empleado.
   - `nombre` (String): el nombre del empleado.
   - `sueldo` (double): el sueldo del empleado.
 

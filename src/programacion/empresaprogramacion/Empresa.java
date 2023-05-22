@@ -6,6 +6,8 @@ public class Empresa {
     public String nombre;
     public Map<Integer, Empleado> mapaEmpleados;
 
+    //AHORA ESTOY EN BRANCH MAIN
+
     public Empresa(String nombre) {
         this.nombre = nombre;
         //TODO this.empleados = new ?<>();
