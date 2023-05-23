@@ -2,14 +2,16 @@ package programacion.empresaprogramacion;
 
 public class Gerente extends Empleado{
   String departamento;
+  static final String CSV_HEADER = "DNI,NOMBRE,SUELDO,DEPARTAMENTO";
 
   public Gerente(String DNI, String nombre, Double sueldo, String departamento) {
     super(DNI, nombre, sueldo, TipoEmpleado.GERENTE);
     this.departamento = departamento;
   }
 
-  public String getDepartamento() {
-    return departamento;
+  @Override
+  public String toCsvLine() {
+    return DNI+ "," + NOMBRE + "," + sueldo + "," + departamento;
   }
 
   @Override
