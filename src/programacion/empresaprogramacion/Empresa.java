@@ -38,13 +38,11 @@ public class Empresa {
 
   public void cargarDesdeCSV(String archivoCargar) {
     // Carga el archivo CSV
-    try {
-      BufferedReader buffer = new BufferedReader(new FileReader(archivoCargar));
+    try (BufferedReader buffer = new BufferedReader(new FileReader(archivoCargar));) {
       String linea = "";
       while ((linea = buffer.readLine()) != null) {
         System.out.println(linea);
       }
-      buffer.close();
     } catch (Exception e) {
       System.out.println("Capturada IOException al cargar el archivo.");
     }
@@ -75,10 +73,10 @@ public class Empresa {
     // Ordenar todos los empleados por orden de sueldo de MAYOR A MENOR
     String cadena = "# Listado de empleados ordenados por sueldo: \n";
 
-    ArrayList<Empleado> ordenSueldo = new ArrayList<>(mapaEmpleados.values());
-    Collections.sort(ordenSueldo, Empleado.COMPARATOR_SUELDO.reversed());
+    ArrayList<Empleado> empleadosOrdenadosPorSueldo = new ArrayList<>(mapaEmpleados.values());
+    Collections.sort(empleadosOrdenadosPorSueldo, Empleado.COMPARATOR_SUELDO.reversed());
 
-    for (Empleado empleado : ordenSueldo) {
+    for (Empleado empleado : empleadosOrdenadosPorSueldo) {
       cadena += empleado.toString() + "\n";
     }
     return cadena;
@@ -88,11 +86,11 @@ public class Empresa {
     // Ordenar todos los empleados por orden de nombre alfabético
     String cadena = "# Listado de empleados ordenados por su nombre: \n";
 
-    ArrayList <Empleado> ordenNombre = new ArrayList<>(mapaEmpleados.values());
+    ArrayList <Empleado> empleadosOrdenadosPorNombre = new ArrayList<>(mapaEmpleados.values());
 
-    Collections.sort(ordenNombre, Empleado.COMPARATOR_NOMBRE);
+    Collections.sort(empleadosOrdenadosPorNombre);
 
-    for (Empleado empleado : ordenNombre) {
+    for (Empleado empleado : empleadosOrdenadosPorNombre) {
       cadena += empleado.toString() + "\n";
     }
     return cadena;

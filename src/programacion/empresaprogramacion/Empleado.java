@@ -6,15 +6,7 @@ public abstract class Empleado implements Comparable<Empleado> {
   private String nombre;
   private double sueldo;
   private TipoEmpleado tipo;
-  private final static String idEmpleadoRegexp = "[A-Z]{1}[8]{1}[0-9]{3}";
-
-  public static final Comparator<Empleado> COMPARATOR_NOMBRE = new Comparator<Empleado>() {
-    @Override
-    public int compare(Empleado o1, Empleado o2) {
-      // Compara nombres, se usará para ordenarlos alfabeticamente
-      return o1.nombre.compareTo(o2.nombre);
-    }
-  };
+  private final static String idEmpleadoRegexp = "[A-Z]8[0-9]{3}";
 
   public static final Comparator<Empleado> COMPARATOR_SUELDO = new Comparator<Empleado>() {
     @Override
