@@ -1,5 +1,7 @@
 package programacion.empresaprogramacion;
 
-public class ParametroInvalidoException {
-  //TODO
+public class ParametroInvalidoException extends Exception{
+  public ParametroInvalidoException(String mensaje) {
+    super(mensaje);
+  }
 }
