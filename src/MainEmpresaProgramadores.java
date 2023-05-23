@@ -18,6 +18,7 @@ public class MainEmpresaProgramadores {
     Empleado referencia;
 
     try {
+      //DNI CORRECTO, NOMBRE CORRECTO, SUELDO CORRECTO
       referencia = new Programador("50549668S", "Daniel", 1302.93, "Java", true);
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
@@ -25,27 +26,31 @@ public class MainEmpresaProgramadores {
     }
 
     try {
-      referencia = new Programador("50782958C", "Max", 1342.55, "PL/SQL", true);
+      //DNI CORRECTO, NOMBRE MAL, SUELDO CORRECTO
+      referencia = new Programador("50782958Q", "M", 1342.55, "PL/SQL", true);
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
       System.out.println(e.getMessage());
     }
 
     try {
-      referencia = new Gerente("50214985H", "Karla", 1824.73, "Contabilidad");
+      //DNI CORRECTO, NOMBRE CORRECTO, SUELDO CORRECTO
+      referencia = new Gerente("50214985M", "Karla", 1824.73, "Contabilidad");
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
       System.out.println(e.getMessage());
     }
 
     try {
-      referencia = new Gerente("02980444R", "Víctor", 1951.42, "Sistemas");
+      //DNI CORRECTO, NOMBRE CORRECTO, SUELDO CORRECTO
+      referencia = new Gerente("02765008V", "Víctor", 1951.42, "Sistemas");
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
       System.out.println(e.getMessage());
     }
 
     try {
+      //DNI INCORRECTO, LETRA, NOMBRE CORRECTO, SUELDO CORRECTO
       referencia = new Programador("47274832J", "Valentín", 1300.00, "Java", true);
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
@@ -54,21 +59,24 @@ public class MainEmpresaProgramadores {
 
 
     try {
-      referencia = new Programador("53688742H", "Fernando", 2159.02, "C++", false);
+      //DNI INCORRECTO, MAL FORMADO, NOMBRE CORRECTO, SUELDO CORRECTO
+      referencia = new Programador("053888742H", "Fernando", 2159.02, "C++", false);
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
       System.out.println(e.getMessage());
     }
 
     try {
-      referencia = new Programador("32831027M", "Michael", 1095.98, "Bash", true);
+      //DNI CORRECTO, NOMBRE CORRECTO, SUELDO NEGATIVO
+      referencia = new Programador("32831027E", "Michael", -1203.02, "Bash", true);
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
       System.out.println(e.getMessage());
     }
 
     try {
-      referencia = new Gerente("07762415B", "Sergio", 2257.25, "Automatización");
+      //DNI CORRECTO, NOMBRE CORRECTO, SUELDO CORRECTO
+      referencia = new Gerente("07762415F", "Sergio", 2257.25, "Automatización");
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
       System.out.println(e.getMessage());

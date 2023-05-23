@@ -111,11 +111,21 @@ public class Empresa {
       while((linea = br.readLine()) != null){
         datos = linea.split(",");
         if (archivoCargar.equalsIgnoreCase(CSV_FILENAME_PROGRAMADORES)){
-          Programador programador = new Programador(datos[0], datos[1], Double.parseDouble(datos[2]), datos[3], Boolean.parseBoolean(datos[4]));
-          mapaEmpleados.put(programador.DNI, programador);
+          Programador programador;
+          try{
+            programador = new Programador(datos[0], datos[1], Double.parseDouble(datos[2]), datos[3], Boolean.parseBoolean(datos[4]));
+            mapaEmpleados.put(programador.DNI, programador);
+          }catch(ParametroInvalidoException | NullPointerException e){
+            System.out.println(e.getMessage());
+          }
         } else if (archivoCargar.equalsIgnoreCase(CSV_FILENAME_GERENTES)){
-          Gerente gerente = new Gerente(datos[0], datos[1], Double.parseDouble(datos[2]), datos[3]);
-          mapaEmpleados.put(gerente.DNI, gerente);
+            Gerente gerente;
+          try{
+            gerente = new Gerente(datos[0], datos[1], Double.parseDouble(datos[2]), datos[3]);
+            mapaEmpleados.put(gerente.DNI, gerente);
+          }catch(ParametroInvalidoException | NullPointerException e){
+            System.out.println(e.getMessage());
+          }
         } else {
           System.out.println("El nombre del archivo no es válido. Si estás cargando programadores el nombre del archivo es: "+CSV_FILENAME_PROGRAMADORES+" y si estás cargando gerentes el nombre del archivo es: "+CSV_FILENAME_GERENTES+".\n");
         }
