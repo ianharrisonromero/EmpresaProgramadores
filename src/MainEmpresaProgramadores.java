@@ -22,7 +22,7 @@ public class MainEmpresaProgramadores {
       referencia = new Programador("50549668S", "Daniel", 1302.93, "Java", true);
       empresa.addEmpleado(referencia);
     } catch (ParametroInvalidoException e) {
-      System.out.println(e.getMessage());
+      System.out.println("Excepción por ParametroInvalido creando Programador: " + e.getMessage());
     }
 
     try {
