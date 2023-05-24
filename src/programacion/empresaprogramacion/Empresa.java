@@ -31,7 +31,7 @@ public class Empresa {
   public void addEmpleado(Empleado empleado) throws ParametroInvalidoException {
     if (mapaEmpleados.containsKey(empleado.DNI)) {
       if (empleado.tipoEmpleado == TipoEmpleado.PROGRAMADOR) {
-        throw new ParametroInvalidoException("Ya existe un Programador con ese ID de empleado.\n");
+        throw new ParametroInvalidoException("Ya existe un " + empleado.tipoEmpleado + " con ese ID de empleado.\n");
       } else {
         throw new ParametroInvalidoException("Ya existe un Gerente con ese ID de empleado.\n");
       }
