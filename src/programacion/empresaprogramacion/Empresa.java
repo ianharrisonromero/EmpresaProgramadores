@@ -15,7 +15,7 @@ public class Empresa {
   public static String nombre;
   public static final String CSV_OUTPUT_PATH_PROGRAMADORES = "outputProgramadores.csv";
   public static final String CSV_OUTPUT_PATH_GERENTES = "outputGerentes.csv";
-  public static final String CSV_INPUT_PATH = "input.csv";
+  public static final String CSV_INPUT_PATH = "inputProgramadores.csv";
   public Map<String, Empleado> mapaEmpleados;
 
   public Empresa(String nombre) {
@@ -40,8 +40,8 @@ public class Empresa {
 
   }
 
-  public void escribirCsvDeProgramadores(String archivoGuardar) {
-    try (BufferedWriter escritor = new BufferedWriter(new FileWriter(archivoGuardar))) {
+  public void escribirCsvDeProgramadores() {
+    try (BufferedWriter escritor = new BufferedWriter(new FileWriter(CSV_OUTPUT_PATH_PROGRAMADORES))) {
       List<Empleado> listaEmpleados = new ArrayList<>(mapaEmpleados.values());
       escritor.write(Programador.getCsvHeader());
       for (Empleado empleado : listaEmpleados) {
@@ -57,7 +57,7 @@ public class Empresa {
     }
   }
 
-  public void escribirCsvDeGerentes(String archivoGuardar){
+  public void escribirCsvDeGerentes(){
     try (BufferedWriter escritor = new BufferedWriter(new FileWriter(CSV_OUTPUT_PATH_GERENTES))) {
       escritor.write(Gerente.GERENTE_CSV_HEADER);
       for (Empleado empleado : mapaEmpleados.values()) {
@@ -72,7 +72,7 @@ public class Empresa {
     }
   }
 
-  public void cargarDesdeCSV(String archivoCargar) {
+  public void cargarDesdeCSV() {
     try (BufferedReader lector = new BufferedReader(new FileReader(CSV_INPUT_PATH))) {
       String line;
       line = lector.readLine(); // header skipped
