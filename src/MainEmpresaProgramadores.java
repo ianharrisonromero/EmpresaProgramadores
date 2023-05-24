@@ -2,6 +2,7 @@ import programacion.empresaprogramacion.Empleado;
 import programacion.empresaprogramacion.Empresa;
 import programacion.empresaprogramacion.Gerente;
 import programacion.empresaprogramacion.Programador;
+import programacion.empresaprogramacion.TipoEmpleado;
 import programacion.empresaprogramacion.excepciones.ParametroInvalidoException;
 import programacion.empresaprogramacion.excepciones.RutaArchivoInvalida;
 
