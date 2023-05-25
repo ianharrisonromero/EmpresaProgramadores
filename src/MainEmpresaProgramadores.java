@@ -25,8 +25,9 @@ public class MainEmpresaProgramadores {
           + e.getMessage());
     }
 
+    //EMPLEADO CON NOMBRE VACIO
     try {
-      Empleado programador = new Programador("99887766E", "Ana López",
+      Empleado programador = new Programador("99887766E", "",
           2500.0, TipoEmpleado.PROGRAMADOR, false);
       String dni = programador.getDniEmpleado();
       empresa.addEmpleado(dni, programador);

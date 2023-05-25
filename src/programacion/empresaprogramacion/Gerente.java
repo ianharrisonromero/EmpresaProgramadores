@@ -5,14 +5,14 @@ public class Gerente extends Empleado {
   static final String GERENTE_CSV_HEADER = EMPLEADO_CSV_HEADER + ",DEPARTAMENTO\n";
 
   public Gerente(String dniEmpleado, String nombre, double sueldo, TipoEmpleado tipo,
-      String departamento) {
+      String departamento) throws ParametroInvalidoException {
     super(dniEmpleado, nombre, sueldo, tipo);
     this.departamento = departamento;
   }
 
   @Override
   public String toString() {
-    return super.toString() + ", " + departamento + "\n";
+    return super.toString() + String.format("%12s |\n",departamento);
   }
 
   public String toCsvHeader() {

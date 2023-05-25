@@ -17,12 +17,10 @@ public abstract class Empleado {
   };
 
   public static final Comparator<Empleado> COMPARATOR_NOMBRE = new Comparator<Empleado>() {
-
     @Override
     public int compare(Empleado emp1, Empleado emp2) {
       return emp1.nombre.compareTo(emp2.nombre);
     }
-
   };
 
   public Empleado(String dniEmpleado, String nombre, double sueldo, TipoEmpleado tipo)
@@ -80,7 +78,7 @@ public abstract class Empleado {
 
   @Override
   public String toString() {
-    return dniEmpleado + ", " + nombre + ", " + sueldo + ", " + tipo;
+    return String.format("%15s | %15s | %7.2f € | %12s |",dniEmpleado, nombre, sueldo, tipo);
   }
 
   public abstract String toCsvLine();

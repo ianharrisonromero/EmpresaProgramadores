@@ -29,11 +29,13 @@ public class Empresa {
 
   public void addEmpleado(String dni, Empleado empleado) throws ParametroInvalidoException {
     if (dni.isEmpty()) {
-      throw new ParametroInvalidoException("El campo dni no puede estar vacio.");
+      throw new ParametroInvalidoException(
+          "El campo dni no puede estar vacio. Excepcion lanzada desde el metodo addEmpleado");
     }
 
     if (mapaEmpleados.containsKey(empleado.getDniEmpleado())) {
-      throw new ParametroInvalidoException("El dni ya existe en el sistema.");
+      throw new ParametroInvalidoException(
+          "El dni ya existe en el sistema. Excepcion lanzada desde el metodo addEmpleado");
     }
 
     mapaEmpleados.put(dni, empleado);
@@ -57,15 +59,15 @@ public class Empresa {
     }
   }
 
-  public void escribirCsvDeGerentes(){
-    try (BufferedWriter escritor = new BufferedWriter(new FileWriter(CSV_OUTPUT_PATH_GERENTES))) {
+  public void escribirCsvDeGerentes() {
+    try (BufferedWriter escritor = new BufferedWriter(new FileWriter(CSV_OUTPUT_PATH_GERENTES, true))) {
       escritor.write(Gerente.GERENTE_CSV_HEADER);
       for (Empleado empleado : mapaEmpleados.values()) {
         if (empleado.getTipo() == TipoEmpleado.GERENTE) {
-          empleado = (Gerente)empleado;
+          empleado = (Gerente) empleado;
           escritor.write(empleado.toCsvLine());
         }
-        
+
       }
     } catch (Exception e) {
       System.out.println("Hubo un error escribiendo el archivo csv: " + e.getMessage());
