@@ -1,4 +1,7 @@
 package programacion.empresaprogramacion;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -31,7 +34,7 @@ public class Empresa {
     }
     @Override
     public String toString() {
-        return "Empresa " + nombre + ", mapaEmpleados=" + mapaEmpleados.values();
+        return "Empresa " + nombre + ", Empleados= " + mapaEmpleados.values();
     }
 
 
@@ -54,12 +57,23 @@ public class Empresa {
     }
 
     public String toStringOrdenSueldo() {
-        // TODO ordenar todos los empleados por orden de sueldo de MAYOR A MENOR,
-        // mostrándolo
+        List<Empleado> ordenadosPorSueldo = new ArrayList<>(mapaEmpleados.values());
+        String devolucion = "";
+        Collections.sort(ordenadosPorSueldo, Empleado.COMPARATOR_SUELDO.reversed());
+        for (Empleado emple : ordenadosPorSueldo) {
+         devolucion += " " + emple.getNombre();    
+        }
+        return devolucion;
     }
 
     public String toStringOrdenNombre() {
-        // TODO ordenar todos los empleados por orden de nombre alfabético, mostrándolo
+        List<Empleado> ordenadosPorNombre = new ArrayList<>(mapaEmpleados.values());
+        String devolucion = "";
+        Collections.sort(ordenadosPorNombre);
+        for(Empleado emple : ordenadosPorNombre){
+            devolucion += " " + emple.getNombre();
+        }
+        return devolucion;
     }
 
 

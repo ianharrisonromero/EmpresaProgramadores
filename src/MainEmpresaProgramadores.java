@@ -64,22 +64,25 @@ public class MainEmpresaProgramadores {
 
         case 1:
           // Imprimir los datos de la empresa y todos sus empleados
-          empresa.toString();
+          System.out.println(empresa);
           break;
 
         case 2:
           // Imprimir solo programadores
-          empresa.toStringProgramadores();
+          System.out.println(empresa.toStringProgramadores());
+          
           break;
 
         case 3:
-          // Imprimir empleados(todos) por sueldo de MAYOR A MENOR
-          empresa.toStringOrdenSueldo();
+          // Imprimir empleados(todos) por sueldo de MAYOR A MENORç
+          System.out.println(empresa.toStringOrdenSueldo());
+          
           break;
 
         case 4:
           // Imprimir empleados(todos) por nombre
-          empresa.toStringOrdenNombre();
+          System.out.println(empresa.toStringOrdenNombre());
+          
           break;
 
         case 5:
