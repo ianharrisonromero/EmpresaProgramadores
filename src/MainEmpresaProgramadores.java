@@ -94,9 +94,7 @@ public class MainEmpresaProgramadores {
 
         case 6:
           // Guardar en CSV
-          System.out.println("Ingrese el nombre del archivo CSV para guardar:");
-          String archivoEscritura = sc.nextLine();
-          empresa.guardarEnCSV(archivoEscritura);
+          empresa.guardarEnCSV();
           break;
 
         case 7:

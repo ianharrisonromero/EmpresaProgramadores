@@ -1,0 +1,1 @@
+Empresa 6, Empleados= [es Senior., Empleado [dniEmpleado=512346V, nombre=Alek, sueldo=2000.0, , Empleado [dniEmpleado=512396F, nombre=Asriel, sueldo=1800.0, , Empleado [dniEmpleado=712346P, nombre=Izan, sueldo=2000.0, ]

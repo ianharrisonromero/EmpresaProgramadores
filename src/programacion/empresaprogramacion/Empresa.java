@@ -1,4 +1,9 @@
 package programacion.empresaprogramacion;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +15,7 @@ public class Empresa {
     public String nombre;
     public Map<String, Empleado> mapaEmpleados;
     static final String FICHERO = "Fichero.txt";
+    static final String REGEX = ",";
 
 
     public Empresa(String nombre) {
@@ -24,12 +30,29 @@ public class Empresa {
         mapaEmpleados.put(empleado.getDniEmpleado(), empleado);
     }
 
-    public void guardarEnCSV(String archivoGuardar) {
-        //TODO 
+    public void guardarEnCSV() {
+        try (FileWriter escritor = new FileWriter(FICHERO, true)) {
+            escritor.write(this.toString());
+        } catch (Exception e) {
+            System.out.println("Error al escribir en fichero. " + e.getMessage());
+        }
     }
 
     public void cargarDesdeCSV(String archivoCargar) {
-        //TODO
+        try (BufferedReader lector = new BufferedReader(new FileReader(FICHERO))) {
+            String linea ="";//sigo dudando si solo instanciarlo sin inicializar...
+            while((linea = lector.readLine()) != null){
+                System.out.println(linea);
+                String [] atributos = linea.split(REGEX);
+                try{
+                    //cómo diferenciar progs de gerentes si solo hago una lista? 
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Ficher no encontrado: " + e.getMessage());
+        } catch (IOException e){
+            System.out.println("Error al leer: " + e.getMessage());
+        }
 
     }
     @Override
