@@ -1,21 +1,23 @@
 package programacion.empresaprogramacion;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Empresa {
     
     public String nombre;
-    public Map<Integer, Empleado> mapaEmpleados;
+    public Map<String, Empleado> mapaEmpleados;
 
-    //AHORA ESTOY EN BRANCH MAIN
 
     public Empresa(String nombre) {
         this.nombre = nombre;
-        //TODO this.empleados = new ?<>();
+        this.mapaEmpleados = new TreeMap<String, Empleado>();
     }
 
-    public void addEmpleado(Empleado empleado) {
-        // TODO  (no permitir meter 2 empleados con el mismo "idEmpleado" y dado el caso lanzar 
-        //exception)
+    public void addEmpleado(Empleado empleado) throws ParametroInvalidoException{
+        if(mapaEmpleados.containsKey(empleado.getDniEmpleado())){
+            throw new ParametroInvalidoException("Dni duplicado: " + empleado.getDniEmpleado());
+        }
+        mapaEmpleados.put(empleado.getDniEmpleado(), empleado);
     }
 
     public void guardarEnCSV(String archivoGuardar) {
@@ -28,20 +30,26 @@ public class Empresa {
     }
     @Override
     public String toString() {
-        //TODO dejar el toString bonito
-        return "Empresa [nombre=" + nombre + ", mapaEmpleados=" + mapaEmpleados + "]";
+        return "Empresa " + nombre + ", mapaEmpleados=" + mapaEmpleados.values();
     }
 
 
     public String toStringEmpleados() {
-        // TODO Mostrar todos los datos de la empresa (nombre y empleados)
-
+        String cadena="";
+        for (String key : mapaEmpleados.keySet()) {
+            cadena += key + " -> " + mapaEmpleados.get(key);
+        }
+        return cadena;
     }
 
     public String toStringProgramadores() {
-        // TODO mostrar todos los empleados programadores, y si reciben o no plus de
-        // idioma
-
+        String cadena="";
+        for (String key : mapaEmpleados.keySet()) {
+            if(mapaEmpleados.get(key) instanceof Programador){
+                cadena += key + " -> " + mapaEmpleados.get(key);
+            }
+        }
+        return cadena;
     }
 
     public String toStringOrdenSueldo() {
