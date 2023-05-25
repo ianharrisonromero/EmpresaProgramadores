@@ -47,9 +47,8 @@ public class Empresa {
       List<Empleado> listaEmpleados = new ArrayList<>(mapaEmpleados.values());
       escritor.write(Programador.getCsvHeader());
       for (Empleado empleado : listaEmpleados) {
-        if (empleado.getTipo() == TipoEmpleado.PROGRAMADOR) {
-          Empleado programador = (Programador) empleado;
-          escritor.write(programador.toCsvLine());
+        if (empleado instanceof Programador) {
+          escritor.write(empleado.toCsvLine());
         }
 
       }
@@ -60,14 +59,12 @@ public class Empresa {
   }
 
   public void escribirCsvDeGerentes() {
-    try (BufferedWriter escritor = new BufferedWriter(new FileWriter(CSV_OUTPUT_PATH_GERENTES, true))) {
+    try (BufferedWriter escritor = new BufferedWriter(new FileWriter(CSV_OUTPUT_PATH_GERENTES))) {
       escritor.write(Gerente.GERENTE_CSV_HEADER);
       for (Empleado empleado : mapaEmpleados.values()) {
-        if (empleado.getTipo() == TipoEmpleado.GERENTE) {
-          empleado = (Gerente) empleado;
+        if (empleado instanceof Gerente) {
           escritor.write(empleado.toCsvLine());
         }
-
       }
     } catch (Exception e) {
       System.out.println("Hubo un error escribiendo el archivo csv: " + e.getMessage());
@@ -81,9 +78,18 @@ public class Empresa {
       while ((line = lector.readLine()) != null) {
         String[] container = line.split(",");
         if ("PROGRAMADOR".equalsIgnoreCase(container[3])) {
-          Empleado programador = new Programador(container[0], container[1],
-              Double.parseDouble(container[2]), TipoEmpleado.PROGRAMADOR,
-              Boolean.parseBoolean(container[4]));
+          Double doubleParseado;
+          Boolean booleanParseado;
+          try {
+            doubleParseado = Double.parseDouble(container[2]);
+            booleanParseado = Boolean.parseBoolean(container[4]);
+
+          } catch (NullPointerException | NumberFormatException e) {
+            System.out.println("Error al parsear, formato incorrecto. " + e.getMessage());
+            continue;
+          }
+          Empleado programador = new Programador(container[0], container[1], doubleParseado,
+              TipoEmpleado.PROGRAMADOR, booleanParseado);
           try {
             if (mapaEmpleados.containsKey(programador.getDniEmpleado())) {
               throw new ParametroInvalidoException("No puede repetirse el DNI");
@@ -96,7 +102,7 @@ public class Empresa {
 
           }
 
-        } else {
+        } else if ("GERENTE".equalsIgnoreCase(container[3])) {
           Empleado gerente = new Gerente(container[0], container[1],
               Double.parseDouble(container[2]), TipoEmpleado.GERENTE, container[4]);
           try {
@@ -106,14 +112,14 @@ public class Empresa {
               mapaEmpleados.put(container[0], gerente);
             }
           } catch (ParametroInvalidoException e) {
-            // TODO: handle exception
+            System.out.println("Error al añadir gerente " + gerente.getNombre() + "/ " + e.getMessage());
           }
 
         }
       }
 
     } catch (Exception e) {
-      // TODO: handle exception
+      System.out.println("Error al cargar el archivo CSV :" + e.getMessage());
     }
 
   }
