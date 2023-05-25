@@ -6,6 +6,7 @@ public class Empresa {
     
     public String nombre;
     public Map<String, Empleado> mapaEmpleados;
+    static final String FICHERO = "Fichero.txt";
 
 
     public Empresa(String nombre) {
@@ -60,5 +61,7 @@ public class Empresa {
     public String toStringOrdenNombre() {
         // TODO ordenar todos los empleados por orden de nombre alfabético, mostrándolo
     }
+
+
 
 }

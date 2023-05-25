@@ -85,15 +85,15 @@ public class MainEmpresaProgramadores {
         case 5:
           // Cargar desde CSV
           System.out.println("Ingrese el nombre del archivo CSV a cargar:");
-          String archivoCargar = sc.nextLine();
-          empresa.cargarDesdeCSV(archivoCargar);
+          String archivoLectura = sc.nextLine();
+          empresa.cargarDesdeCSV(archivoLectura);
           break;
 
         case 6:
           // Guardar en CSV
           System.out.println("Ingrese el nombre del archivo CSV para guardar:");
-          String archivoGuardar = sc.nextLine();
-          empresa.guardarEnCSV(archivoGuardar);
+          String archivoEscritura = sc.nextLine();
+          empresa.guardarEnCSV(archivoEscritura);
           break;
 
         case 7:

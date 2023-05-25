@@ -1,5 +1,7 @@
 package programacion.empresaprogramacion;
 
+import java.util.Comparator;
+
 public abstract class Empleado implements Comparable<Empleado>{
   private String dniEmpleado;
   private String nombre;
@@ -49,7 +51,11 @@ public abstract class Empleado implements Comparable<Empleado>{
     return this.getNombre().compareTo((o.getNombre())); //no sé si el this está feo. O sea sobra, pero aclara o ensucia?
   }
 
-
+  public static final Comparator<Empleado> COMPARATOR_SUELDO = new Comparator<Empleado>(){
+        public int compare(Empleado e1, Empleado e2){
+          return e1.getSueldo().compareTo(e2.getSueldo());
+        }
+  };
 
 
   
