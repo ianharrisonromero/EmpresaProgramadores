@@ -1,7 +1,11 @@
 import java.util.Scanner;
+
+import programacion.empresaprogramacion.Empleado;
 import programacion.empresaprogramacion.Empresa;
 import programacion.empresaprogramacion.Gerente;
+import programacion.empresaprogramacion.ParametroInvalidoException;
 import programacion.empresaprogramacion.Programador;
+import programacion.empresaprogramacion.TipoEmpleado;;
 
 public class MainEmpresaProgramadores {
 
@@ -9,32 +13,90 @@ public class MainEmpresaProgramadores {
 
     Empresa empresa = new Empresa("Empresa del Juan de la Cierva");
     int opcion = 0;
-
     Scanner scanner = new Scanner(System.in);
 
-    referencia = new Programador(parametros);
-    empresa.addEmpleado(referencia);
+    try {
+      Empleado programador = new Programador("44332211D", "Carlos Sánchez",
+          3000.0, TipoEmpleado.PROGRAMADOR, true);
+      String dni = programador.getDniEmpleado();
+      empresa.addEmpleado(dni, programador);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
 
-    referencia = new Programador(parametros);
-    empresa.addEmpleado(referencia);
+    //EMPLEADO CON NOMBRE VACIO
+    try {
+      Empleado programador = new Programador("99887766E", "",
+          2500.0, TipoEmpleado.PROGRAMADOR, false);
+      String dni = programador.getDniEmpleado();
+      empresa.addEmpleado(dni, programador);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
 
-    referencia = new Gerente(parametros);
-    empresa.addEmpleado(referencia);
+    try {
+      Empleado programador = new Programador("55443322F", "Pedro Martínez",
+          3500.0, TipoEmpleado.PROGRAMADOR, true);
+      String dni = programador.getDniEmpleado();
+      empresa.addEmpleado(dni, programador);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
 
-    referencia = new Gerente(parametros);
-    empresa.addEmpleado(referencia);
+    try {
+      Empleado programador = new Programador("00998877H", "Luis González",
+          3200.0, TipoEmpleado.PROGRAMADOR, false);
+      String dni = programador.getDniEmpleado();
+      empresa.addEmpleado(dni, programador);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
 
-    referencia = new Programador(parametros);
-    empresa.addEmpleado(referencia);
+    try {
+      Empleado programador = new Programador("22334455I", "María Fernández",
+          2900.0, TipoEmpleado.PROGRAMADOR, true);
+      String dni = programador.getDniEmpleado();
+      empresa.addEmpleado(dni, programador);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
 
-    referencia = new Programador(parametros);
-    empresa.addEmpleado(referencia);
+    try {
+      Empleado programador = new Programador("77665544J", "David Rodríguez",
+          2700.0, TipoEmpleado.PROGRAMADOR, false);
+      String dni = programador.getDniEmpleado();
+      empresa.addEmpleado(dni, programador);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
 
-    referencia = new Programador(parametros);
-    empresa.addEmpleado(referencia);
+    try {
+      Empleado gerente = new Gerente("55667788B", "Juan Rodríguez",
+          4500.0, TipoEmpleado.GERENTE, "Finanzas");
+      String dni = gerente.getDniEmpleado();
+      empresa.addEmpleado(dni, gerente);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
 
-    referencia = new Programador(parametros);
-    empresa.addEmpleado(referencia);
+    try {
+      Empleado gerente = new Gerente("99001122C", "Laura Martínez",
+          3800.0, TipoEmpleado.GERENTE, "Marketing");
+      String dni = gerente.getDniEmpleado();
+      empresa.addEmpleado(dni, gerente);
+    } catch (ParametroInvalidoException e) {
+      System.out.println("Excepcion capturada, hubo un error añadiendo al empleado: "
+          + e.getMessage());
+    }
+
+
 
     do {
       imprimirMenu();
@@ -45,39 +107,42 @@ public class MainEmpresaProgramadores {
 
         case 1:
           // Imprimir los datos de la empresa y todos sus empleados
-          empresa.toString();
+          System.out.println(empresa);
+          ;
           break;
 
         case 2:
-          // Imprimir solo programadores
-          empresa.toStringProgramadores();
+          System.out.println(empresa.toStringProgramadores());
           break;
 
         case 3:
-          // Imprimir empleados(todos) por sueldo de MAYOR A MENOR
-          empresa.toStringOrdenSueldo();
+          System.out.println(empresa.toStringGerentes());
           break;
 
         case 4:
-          // Imprimir empleados(todos) por nombre
-          empresa.toStringOrdenNombre();
+          System.out.println(empresa.toStringOrdenSueldo());
           break;
 
         case 5:
-          // Cargar desde CSV
-          System.out.println("Ingrese el nombre del archivo CSV a cargar:");
-          String archivoCargar = scanner.nextLine();
-          empresa.cargarDesdeCSV(archivoCargar);
+          System.out.println(empresa.toStringOrdenNombre());
           break;
 
         case 6:
-          // Guardar en CSV
-          System.out.println("Ingrese el nombre del archivo CSV para guardar:");
-          String archivoGuardar = scanner.nextLine();
-          empresa.guardarEnCSV(archivoGuardar);
+          // Cargar desde CSV
+          empresa.cargarDesdeCSV();
           break;
 
         case 7:
+          // Escribir programadores en un CSV
+          empresa.escribirCsvDeProgramadores();
+          break;
+
+        case 8:
+          // Escribir gerentes en un CSV
+          empresa.escribirCsvDeGerentes();
+          break;
+
+        case 9:
           System.out.println("Saliendo...");
           break;
 
@@ -86,18 +151,20 @@ public class MainEmpresaProgramadores {
           break;
       }
 
-    } while (opcion != 7);
+    } while (opcion != 9);
   }
 
   private static void imprimirMenu() {
-    System.out.println("### Menú Empresa ###");
+    System.out.println("### Menú " + Empresa.getNombre() + " ###");
     System.out.println("1. Imprimir todos los empleados");
     System.out.println("2. Imprimir todos los programadores");
-    System.out.println("3. Imprimir empleados por sueldo");
-    System.out.println("4. Imprimir empleados por nombre");
-    System.out.println("5. Cargar desde fichero CSV");
-    System.out.println("6. Guardar en CSV");
-    System.out.println("7. Salir");
-    System.out.println("Introduce una opción:");
+    System.out.println("3. Imprimir todos los gerentes");
+    System.out.println("4. Imprimir empleados por sueldo");
+    System.out.println("5. Imprimir empleados por nombre");
+    System.out.println("6. Cargar programadores desde fichero CSV");
+    System.out.println("7. Escribir programadores en CSV");
+    System.out.println("8. Escribir gerentes en fichero CSV");
+    System.out.println("9. Salir");
+    System.out.print("Introduce una opción: ");
   }
 }
